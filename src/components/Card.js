@@ -20,7 +20,7 @@ class Card extends React.Component {
                <p  className="m-0"><span className="fw-bold">Email: </span>{user.email}</p>
                <p  className="m-0"><span className="fw-bold">Phone: </span>{user.phone}</p>
                <p  className="m-0"><span className="fw-bold">Address: </span>{user.address.suite}, {user.address.street}, {user.address.city}</p>
-               <p  className="mb-4"><span className="fw-bold">Country: </span>{user.company.name}</p>
+               <p  className="mb-4"><span className="fw-bold">Company: </span>{user.company.name}</p>
                <Button onClick={this.removeCard} variant="danger">Delete</Button>
             </div> 
         )
