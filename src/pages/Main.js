@@ -8,7 +8,6 @@ import Card from '../components/Card';
 class Main extends React.Component{
     constructor(){
         super();
-
         this.state = {
             loading: true,
             error: false,
@@ -20,9 +19,6 @@ class Main extends React.Component{
             .then(res => res.json())
             .then(data => this.updateUsers(data))
             .catch(err=> this.failedToLoad())
-    }
-    componentDidUpdate(){
-        console.log(this.state.users)
     }
     updateUsers = (data) => {
         this.setState({loading:false, users: data})

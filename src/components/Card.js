@@ -1,21 +1,11 @@
 import React from 'react'
 import Button from 'react-bootstrap/Button'
 class Card extends React.Component {
-    constructor(props){
-        super(props);
-
-        this.state = {
-            hidden: false
-        }
-    }
-    removeCard = () => {
-        this.setState({hidden:true})
-    }
+   
     render () {
         const {user, removeUser} = this.props
-        const {hidden} = this.state
         return (
-            <div className={`card m-1 p-3 ${hidden ? 'd-none' : ''}`}>
+            <div className="card m-1 p-3">
                <p className="m-0"><span className="fw-bold">Username: </span>{user.username}</p>
                <p  className="m-0"><span className="fw-bold">Email: </span>{user.email}</p>
                <p  className="m-0"><span className="fw-bold">Phone: </span>{user.phone}</p>
