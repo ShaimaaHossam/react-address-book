@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useReducer } from "react";
 import { Alert } from "react-bootstrap";
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
@@ -21,14 +21,19 @@ class Main extends React.Component{
             .then(data => this.updateUsers(data))
             .catch(err=> this.failedToLoad())
     }
-   
+    componentDidUpdate(){
+        console.log(this.state.users)
+    }
     updateUsers = (data) => {
         this.setState({loading:false, users: data})
     }
     failedToLoad = () =>{
         this.setState({loading:false})
     }
-    
+    removeUser = (user) =>{
+        const filtered = this.state.users.filter(u => u.id != user.id);
+        this.setState({users: filtered})
+    }
     render(){
         const {loading, users} = this.state
         return(
@@ -45,7 +50,7 @@ class Main extends React.Component{
              {
                users.length > 0 && <Row>
                 {users.map(user => {
-                    return <Col key={user.id}  md={3}> <Card user={user} /></Col>
+                    return <Col key={user.id}  md={3}> <Card user={user} removeUser={this.removeUser}/></Col>
                })}
                </Row>
              }

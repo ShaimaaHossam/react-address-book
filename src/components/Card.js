@@ -12,7 +12,7 @@ class Card extends React.Component {
         this.setState({hidden:true})
     }
     render () {
-        const {user} = this.props
+        const {user, removeUser} = this.props
         const {hidden} = this.state
         return (
             <div className={`card m-1 p-3 ${hidden ? 'd-none' : ''}`}>
@@ -21,7 +21,7 @@ class Card extends React.Component {
                <p  className="m-0"><span className="fw-bold">Phone: </span>{user.phone}</p>
                <p  className="m-0"><span className="fw-bold">Address: </span>{user.address.suite}, {user.address.street}, {user.address.city}</p>
                <p  className="mb-4"><span className="fw-bold">Company: </span>{user.company.name}</p>
-               <Button onClick={this.removeCard} variant="danger">Delete</Button>
+               <Button onClick={()=>removeUser(user)} variant="danger">Delete</Button>
             </div> 
         )
     }
