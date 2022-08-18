@@ -12,6 +12,7 @@ class Main extends React.Component{
 
         this.state = {
             loading: true,
+            error: false,
             users: []
         }
     }
@@ -28,14 +29,14 @@ class Main extends React.Component{
         this.setState({loading:false, users: data})
     }
     failedToLoad = () =>{
-        this.setState({loading:false})
+        this.setState({loading:false, error: true})
     }
     removeUser = (user) =>{
         const filtered = this.state.users.filter(u => u.id != user.id);
         this.setState({users: filtered})
     }
     render(){
-        const {loading, users} = this.state
+        const {loading, error, users} = this.state
         return(
             <>
              
@@ -44,11 +45,11 @@ class Main extends React.Component{
              {loading && <Alert>Loading</Alert>}
 
              {/**Fetch method caught a network error and updated loading state to false */}
-             {users.length === 0 && !loading && <Alert variant="danger">Network Error</Alert>}
+             {error && !loading && <Alert variant="danger">Network Error</Alert>}
 
              {/**Render users data once successfully fetched */}
              {
-               users.length > 0 && <Row>
+              <Row>
                 {users.map(user => {
                     return <Col key={user.id}  md={3}> <Card user={user} removeUser={this.removeUser}/></Col>
                })}
