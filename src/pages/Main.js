@@ -1,10 +1,9 @@
-import React, { useReducer } from "react";
+import React from "react";
 import { Alert } from "react-bootstrap";
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 
 import Card from '../components/Card';
-import Button from 'react-bootstrap/Button';
 
 class Main extends React.Component{
     constructor(){
@@ -32,7 +31,7 @@ class Main extends React.Component{
         this.setState({loading:false, error: true})
     }
     removeUser = (user) =>{
-        const filtered = this.state.users.filter(u => u.id != user.id);
+        const filtered = this.state.users.filter(u => u.id !== user.id);
         this.setState({users: filtered})
     }
     render(){
